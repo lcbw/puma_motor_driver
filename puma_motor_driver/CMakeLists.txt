@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 find_package(catkin REQUIRED COMPONENTS
   diagnostic_updater
   puma_motor_msgs
+  socketcan_interface
   roscpp
   sensor_msgs
   serial
@@ -14,7 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES puma_motor_driver
-  CATKIN_DEPENDS diagnostic_updater puma_motor_msgs roscpp sensor_msgs serial
+  CATKIN_DEPENDS diagnostic_updater puma_motor_msgs roscpp sensor_msgs serial socketcan_interface
 )
 
 include_directories(
