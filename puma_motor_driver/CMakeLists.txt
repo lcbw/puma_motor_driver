@@ -59,7 +59,7 @@ set(DEPENDENCIES
 	std_msgs
 	sensor_msgs
 	serial_driver
-	socketcan_interface
+  socketcan_interface
 )
 
 
@@ -94,5 +94,6 @@ install(DIRECTORY include/${PROJECT_NAME}/
 ################################################################################
 # Macro for ament package
 ################################################################################
+ament_export_dependencies(${DEPENDENCIES})
 ament_package()
 

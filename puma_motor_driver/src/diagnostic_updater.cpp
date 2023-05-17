@@ -27,27 +27,20 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 #include "puma_motor_driver/diagnostic_updater.hpp"
 #include "puma_motor_msgs/msg/status.hpp"
 
-namespace puma_motor_driver
-{
+namespace puma_motor_driver {
 
-  typedef diagnostic_msgs::msg::DiagnosticStatus Status;
+typedef diagnostic_msgs::msg::DiagnosticStatus Status;
 
 PumaMotorDriverDiagnosticUpdater::PumaMotorDriverDiagnosticUpdater(const std::string node_name)
-  : 
-	Node(node_name),
-	Updater(
-		this->get_node_base_interface(),
-		this->get_node_logging_interface(),
-		this->get_node_parameters_interface(),
-		this->get_node_timers_interface(),
-		this->get_node_topics_interface(),
-		1.0
-  )
+    : Node(node_name)
+    , Updater(this, 1.0)
 {
-  initialized_ = false;
-  setHardwareID("none");
-  status_sub_ = this->create_subscription<puma_motor_msgs::msg::MultiStatus>(
-		"status", 5, std::bind(&PumaMotorDriverDiagnosticUpdater::statusCallback, this, std::placeholders::_1));
+    initialized_ = false;
+    setHardwareID("none");
+    status_sub_ = this->create_subscription<puma_motor_msgs::msg::MultiStatus>(
+        "status",
+        5,
+        std::bind(&PumaMotorDriverDiagnosticUpdater::statusCallback, this, std::placeholders::_1));
 }
 
 const char* PumaMotorDriverDiagnosticUpdater::getModeString(uint8_t mode)
@@ -130,4 +123,4 @@ void PumaMotorDriverDiagnosticUpdater::statusCallback(const puma_motor_msgs::msg
   }
 }
 
-}  // namespace puma_motor_driver
+} // namespace puma_motor_driver

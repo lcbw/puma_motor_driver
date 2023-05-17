@@ -45,7 +45,7 @@ public:
 
   void statusCallback(const puma_motor_msgs::msg::MultiStatus::SharedPtr status_msg);
 
-private:
+  private:
   rclcpp::Subscription<puma_motor_msgs::msg::MultiStatus>::SharedPtr status_sub_;
   puma_motor_msgs::msg::MultiStatus::SharedPtr last_status_;
   bool initialized_;
